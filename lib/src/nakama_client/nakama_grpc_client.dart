@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:grpc/grpc.dart';
-import 'package:grpc/grpc_connection_interface.dart';
-import 'package:logging/logging.dart';
 import 'package:flutter_nakama/api.dart';
 import 'package:flutter_nakama/nakama.dart';
 import 'package:flutter_nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
-import 'package:flutter_nakama/src/rest/apigrpc.swagger.dart';
 import 'package:flutter_nakama/src/session.dart' as model;
+import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc_connection_interface.dart';
+import 'package:logging/logging.dart';
 
 const _kDefaultAppKey = 'default';
 
@@ -325,8 +324,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
     String? version,
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
-  }) {
-    return _client.writeStorageObjects(
+  }) async {
+    await _client.writeStorageObjects(
       WriteStorageObjectsRequest(
         objects: [
           WriteStorageObject(

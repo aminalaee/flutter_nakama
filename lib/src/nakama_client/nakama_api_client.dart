@@ -347,10 +347,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? version,
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
-  }) {
+  }) async {
     _session = session;
 
-    return _api.nakamaWriteStorageObjects(
+    await _api.nakamaWriteStorageObjects(
       body: ApiWriteStorageObjectsRequest(
         objects: [
           ApiWriteStorageObject(
