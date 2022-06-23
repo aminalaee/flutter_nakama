@@ -144,4 +144,11 @@ abstract class NakamaBaseClient {
     int limit = 20,
     String? expiry,
   });
+
+  Future<Rpc> rpc({
+    required model.Session session,
+    required String id,
+    String? payload,
+    String? httpkey,
+  });
 }

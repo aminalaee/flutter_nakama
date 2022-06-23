@@ -445,13 +445,12 @@ class NakamaRestApiClient extends NakamaBaseClient {
     _session = session;
 
     final res = await _api.nakamaWriteLeaderboardRecord(
-      leaderboardId: leaderboardId,
-      body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
-        score: score?.toString(),
-        subscore: subscore?.toString(),
-        metadata: metadata,
-      )
-    );
+        leaderboardId: leaderboardId,
+        body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
+          score: score?.toString(),
+          subscore: subscore?.toString(),
+          metadata: metadata,
+        ));
 
     return LeaderboardRecord()..mergeFromProto3Json(res.body!.toJson());
   }
@@ -500,5 +499,20 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
 
     return LeaderboardRecordList()..mergeFromProto3Json(res.body!.toJson());
+  }
+
+  @override
+  Future<Rpc> rpc({
+    required model.Session session,
+    required String id,
+    String? payload,
+    String? httpkey,
+  }) async {
+    _session = session;
+
+    final res =
+        await _api.nakamaRpcFunc(id: id, body: payload, httpKey: httpkey);
+
+    return Rpc()..mergeFromProto3Json(res.body!.toJson());
   }
 }

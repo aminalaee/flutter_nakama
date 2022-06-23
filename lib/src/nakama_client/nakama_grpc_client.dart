@@ -429,9 +429,9 @@ class NakamaGrpcClient extends NakamaBaseClient {
           score: score == null ? null : Int64(score),
           subscore: subscore == null ? null : Int64(subscore),
           metadata: metadata,
-          ),
         ),
-        options: _getSessionCallOptions(session),
+      ),
+      options: _getSessionCallOptions(session),
     );
   }
 
@@ -477,6 +477,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
         expiry:
             expiry == null ? null : Int64Value(value: Int64(int.parse(expiry))),
       ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
+  Future<Rpc> rpc({
+    required model.Session session,
+    required String id,
+    String? payload,
+    String? httpkey,
+  }) async {
+    return await _client.rpcFunc(
+      Rpc(id: id, payload: payload, httpKey: httpkey),
       options: _getSessionCallOptions(session),
     );
   }
