@@ -28,7 +28,8 @@ void main() {
         payload: '{"key": "value"}',
       );
 
-      expect(jsonDecode(res.payload), equals({'key': 'value'}));
+      expect(jsonDecode(res.payload),
+          equals({'key': 'value', 'user_id': session.userId}));
     });
   });
 }

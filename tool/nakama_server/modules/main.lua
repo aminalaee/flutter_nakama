@@ -6,6 +6,7 @@ end)
 
 local function test_rpc(context, payload)  
     local json = nk.json_decode(payload)
+    json.user_id = context.user_id
     return nk.json_encode(json)
   end
   
