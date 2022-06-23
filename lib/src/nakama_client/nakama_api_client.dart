@@ -506,12 +506,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required String id,
     String? payload,
-    String? httpkey,
   }) async {
     _session = session;
 
-    final res =
-        await _api.nakamaRpcFunc(id: id, body: payload, httpKey: httpkey);
+    final res = await _api.nakamaRpcFunc(id: id, body: payload);
 
     return Rpc()..mergeFromProto3Json(res.body!.toJson());
   }

@@ -149,6 +149,5 @@ abstract class NakamaBaseClient {
     required model.Session session,
     required String id,
     String? payload,
-    String? httpkey,
   });
 }
